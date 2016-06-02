@@ -1,5 +1,7 @@
 package sa;
 
+import graph.CreateGraph;
+
 /**
  * Created by deepanshu on 5/26/16.
  * SimulatedAnnealing.java
@@ -17,6 +19,9 @@ public class SimulatedAnnealing {
     }
 
     public static void main(String[] args) {
+
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+
         // Create and add our cities
         City city = new City(60, 200);
         TourManager.addCity(city);
@@ -59,11 +64,14 @@ public class SimulatedAnnealing {
         City city20 = new City(160, 20);
         TourManager.addCity(city20);
 
+        CreateGraph cg = new CreateGraph();
+        cg.init();
+
         // Set initial Temp
-        double temp = 10000000;
+        double temp = 10000;
 
         // Cooling rant
-        double coolingRate = 0.000003;
+        double coolingRate = 0.003;
 
         // Initialize initial solution
         Tour currentSolution = new Tour();
@@ -73,6 +81,7 @@ public class SimulatedAnnealing {
 
         // Set as current best
         Tour best = new Tour(currentSolution.getTour());
+        cg.set(best);
 
         // Loop until system has cooled
         while (temp > 1) {
@@ -103,6 +112,8 @@ public class SimulatedAnnealing {
             // Keep track of the best solution found
             if (currentSolution.getDistance() < best.getDistance()) {
                 best = new Tour(currentSolution.getTour());
+                if (!citySwap1.toString().equals(citySwap2.toString()))
+                    cg.update(citySwap1, citySwap2);
             }
 
             // Cool system
