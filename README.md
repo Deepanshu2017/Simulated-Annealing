@@ -11,4 +11,4 @@ Run in terminal
 java -cp .:/path/to/downloaded/jar/gs-core-1.3.jar:/path/to/downloaded/jar/gs-ui-1.3.jar sa.SimulatedAnnealing
 ```
 
-![Demo](https://drive.google.com/open?id=0B7Q8ZFPa4G39U1F1OFplcmoybkE)
+![Demo](https://www.dropbox.com/s/qnm02onafg65889/result.gif?dl=0)
